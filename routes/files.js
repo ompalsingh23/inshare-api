@@ -1,4 +1,4 @@
-// require('dotenv').config();
+require('dotenv').config();
 const router = require('express').Router();
 const multer = require('multer');
 const path = require('path');
@@ -41,7 +41,7 @@ router.post('/',(req,res) => {
     });
     const response = await file.save();
     // return res.json({ file: `${process.env.APP_BASE_URL}/files/${response.uuid}`});
-    return res.json({ file: `http://localhost:3000/files/${response.uuid}`});
+    return res.json({ file: `https://inshare-om.herokuapp.com/files/${response.uuid}`});
     
  });
  
@@ -75,7 +75,7 @@ router.post('/send', async (req,res) => {
     text: `${emailFrom} shared a file with you`,
     html:require("../services/emailTemplate")({
         emailFrom: emailFrom,
-        downloadLink: `http://localhost:3000/files/${response.uuid}`,
+        downloadLink: `https://inshare-om.herokuapp.com/files/${response.uuid}`,
         size: parseInt(file.size/1000)+'KB',
         expires: '24 hrs'
     }) 
