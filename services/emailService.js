@@ -3,8 +3,8 @@ const nodemailer = require("nodemailer");
 
 module.exports = async ({from,to, subject, text , html}) => {
     let transporter= nodemailer.createTransport({
-        host: "smtp-relay.sendinblue.com",
-        port: 587,
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT,
         secure: false,
         auth:{
             user: "deoraompal23@gmail.com",
@@ -12,11 +12,11 @@ module.exports = async ({from,to, subject, text , html}) => {
         },
     });
     let info = await transporter.sendMail({
-        from: from,
-        to: to,
-        subject: subject ,
-        text: text,
-        html:html
+        from: `inshare <${from}>`,
+        to,
+        subject ,
+        text,
+        html
     });
 }
 

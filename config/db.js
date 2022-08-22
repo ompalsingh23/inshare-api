@@ -1,9 +1,9 @@
-// require('dotenv').config();
+require('dotenv').config();
 
 const mongoose =require('mongoose');
 function connectDB(){
     //database connection
-    mongoose.connect("mongodb+srv://ompal:Ompal%4012345@cluster0.fybqn.mongodb.net/inshare" , {useNewUrlParser: true, useUnifiedTopology: true});
+    mongoose.connect(process.env.MONGO_CONNECTION_URL , {useNewUrlParser: true, useUnifiedTopology: true});
     const connection = mongoose.connection;
 
     connection.once('open',() => {
